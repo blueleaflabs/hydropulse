@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-01-02T21:09:31Z",
+  "grid_resolution_m": 3000,
+  "crs_ops_epsg": 3310,
+  "crs_export_default_epsg": 4326,
+  "cells": 46495,
+  "effective_land_area_km2": 410516.3,
+  "implied_cell_km": 2.9714,
+  "bbox_km_width_height": [
+    915.0,
+    1059.0
+  ],
+  "has_land_frac": true,
+  "boundary_path": "/Users/rohan/code/blueleaflabs/hydropulse/results/california_boundary.gpkg",
+  "parquet_3310_path": "/Users/rohan/code/blueleaflabs/hydropulse/results/grid_3000m_CA_epsg3310.parquet",
+  "geojson_preview_4326_path": "/Users/rohan/code/blueleaflabs/hydropulse/results/grid_3000m_CA_head500_epsg4326.geojson"
+}

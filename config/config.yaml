@@ -44,6 +44,7 @@ TEMPORAL_WINDOWS_DAYS:
 USCRN_BASE_HOURLY: "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/"
 GHCND_STATIONS_URL: "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt"
 CENSUS_STATES_ZIP_URL: "https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_state_20m.zip"
+CDO_BASE_URL: "https://www.ncei.noaa.gov/cdo-web/api/v2/data"
 
 # Headers
 USER_AGENT_HEADERS:
@@ -73,6 +74,8 @@ USCRN_YEARS:
 
 
 # Data directories (relative to out_dir)
+CDO_RAW_DIRNAME: "cdo_raw_monthly"
+CDO_CLEAN_DIRNAME: "cdo_clean"
 USCRN_RAW_DIRNAME: "uscrn_raw"
 USCRN_CLEAN_DIRNAME: "uscrn_clean"
 MANUAL_DIRNAME: "manual"
@@ -93,6 +96,14 @@ GHCND_RAW_CSV_NAME: "ghcnd_daily_raw_all.csv"
 GHCND_CLEAN_PARQUET_NAME: "ghcnd_daily_cleaned.parquet"
 GHCND_CLEAN_CSV_NAME: "ghcnd_daily_cleaned.csv"
 GHCND_STATIONS_TXT_NAME: "ghcnd-stations.txt"
+
+
+# GHCND outputs (relative to out_dir)
+GHCND_RAW_CSV_NAME: "ghcnd_daily_raw_all.csv"
+GHCND_CLEAN_PARQUET_NAME: "ghcnd_daily_cleaned.parquet"
+GHCND_CLEAN_CSV_NAME: "ghcnd_daily_cleaned.csv"
+GHCND_STATIONS_TXT_NAME: "ghcnd-stations.txt"
+
 
 # Analysis outputs (relative to out_dir)
 GRID_FILENAME: "grid_3000m_CA_epsg3310.parquet"

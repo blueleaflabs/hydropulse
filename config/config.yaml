@@ -43,7 +43,7 @@ TEMPORAL_WINDOWS_DAYS:
 # Base URLs
 USCRN_BASE_HOURLY: "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/"
 GHCND_STATIONS_URL: "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt"
-
+CENSUS_STATES_ZIP_URL: "https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_state_20m.zip"
 
 # Headers
 USER_AGENT_HEADERS:
@@ -112,6 +112,8 @@ USCRN_YEARS_FILTER: [2024]
 USCRN_LIST_TIMEOUT: 120
 USCRN_DOWNLOAD_TIMEOUT: 300
 GHCND_TIMEOUT: 120
+CENSUS_STATES_TIMEOUT: 120
+
 
 # NLCD/HMS/other timeouts
 DOWNLOAD_TIMEOUT: 60

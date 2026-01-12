@@ -1,0 +1,127 @@
+# Project identity
+parent: blueleaflabs
+project: hydropulse
+
+run_tag: "v1.0"
+
+# California bounding box (approximate)
+bbox:
+  nwlat: 42.0095
+  nwlng: -124.4820
+  selat: 32.5343
+  selng: -114.1315
+region: "CA"
+
+
+# Time window (UTC)
+start_date: "2024-06-01"
+end_date: "2024-10-31"
+
+# Baseline period for anomalies
+BASELINE_START_DATE: "1991-01-01"
+BASELINE_END_DATE: "2020-12-31"
+
+# Used for aggregations and summaries
+HYDRO_VARIABLES:
+  precipitation:
+    units: "mm"
+    aggregation: "sum"
+  temperature:
+    units: "C"
+    aggregation: "mean"
+
+# Used to distinguish transient events vs persistent regimes
+TEMPORAL_WINDOWS_DAYS:
+  - 1
+  - 7
+  - 30
+  - 90
+
+
+# Optional local overrides
+
+# Base URLs
+USCRN_BASE_HOURLY: "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/"
+GHCND_STATIONS_URL: "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt"
+
+
+# Headers
+USER_AGENT_HEADERS:
+  User-Agent: "BlueLeafLabs/HydroPulse/1.0"
+
+# Output paths (relative to repo root)
+out_dir: "results"
+
+# Spatial config
+WGS84_EPSG: 4326
+CA_ALBERS_EPSG: 3310
+OPS_EPSG: 3310
+grid_resolution_m: 3000
+crs_epsg: 4326
+
+# USCRN configuration for California
+USCRN_STATION_NAME:
+  - "CA Bodega 6 WSW"
+  - "CA Fallbrook 5 NE"
+  - "CA Merced 23 WSW"
+  - "CA Redding 12 WNW"
+  - "CA Santa Barbara 11 W"
+  - "CA Stovepipe Wells 1 SW"
+  - "CA Yosemite Village 12 W"
+USCRN_YEARS:
+  - 2024
+
+
+# Data directories (relative to out_dir)
+USCRN_RAW_DIRNAME: "uscrn_raw"
+USCRN_CLEAN_DIRNAME: "uscrn_clean"
+MANUAL_DIRNAME: "manual"
+LOOKUPS_DIRNAME: "lookups"
+PRISM_RAW_DIRNAME: "prism_raw"
+PRISM_CLEAN_DIRNAME: "prism_clean"
+ERA5_RAW_DIRNAME: "era5_raw"
+ERA5_CLEAN_DIRNAME: "era5_clean"
+SMAP_RAW_DIRNAME: "smap_raw"
+SMAP_CLEAN_DIRNAME: "smap_clean"
+SNOTEL_RAW_DIRNAME: "snotel_raw"
+SNOTEL_CLEAN_DIRNAME: "snotel_clean"
+
+
+
+# GHCND outputs (relative to out_dir)
+GHCND_RAW_CSV_NAME: "ghcnd_daily_raw_all.csv"
+GHCND_CLEAN_PARQUET_NAME: "ghcnd_daily_cleaned.parquet"
+GHCND_CLEAN_CSV_NAME: "ghcnd_daily_cleaned.csv"
+GHCND_STATIONS_TXT_NAME: "ghcnd-stations.txt"
+
+# Analysis outputs (relative to out_dir)
+GRID_FILENAME: "grid_3000m_CA_epsg3310.parquet"
+USCRN_FILENAME: "uscrn_2024_hourly_clean.parquet"
+GHCND_FILENAME: "ghcnd_daily_cleaned.parquet"
+FINAL_DAILY_FILENAME: "final_daily_grid_3000m_20240601_20241031.parquet"
+FINAL_DAILY_FILENAME_TEMPLATE: "final_daily_grid_{region}_{res_m}m_epsg{epsg}_{start}_{end}.parquet"
+MANUAL_DIRNAME: "manual"
+
+
+
+# GHCND/USCRN processing parameters
+USCRN_YEARS_FILTER: [2024]
+
+
+# HTTP timeouts and retries (seconds unless noted)
+USCRN_LIST_TIMEOUT: 120
+USCRN_DOWNLOAD_TIMEOUT: 300
+GHCND_TIMEOUT: 120
+
+# NLCD/HMS/other timeouts
+DOWNLOAD_TIMEOUT: 60
+
+
+# Data source naming reference (human-readable)
+DATA_SOURCES:
+  USCRN:
+    raw_parquet: "uscrn_2024_hourly_raw.parquet"
+    clean_parquet: "uscrn_2024_hourly_clean.parquet"
+  GRID:
+    wgs84_parquet: "grid_{res_m}m_CA.parquet"
+    epsg3310_parquet: "grid_{res_m}m_CA_epsg3310.parquet"

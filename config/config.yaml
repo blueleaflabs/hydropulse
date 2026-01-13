@@ -119,6 +119,32 @@ FINAL_DAILY_FILENAME_TEMPLATE: "final_daily_grid_{region}_{res_m}m_epsg{epsg}_{s
 MANUAL_DIRNAME: "manual"
 PRISM_MANUAL_DIR: "results/manual/prism"
 
+# SNOTEL
+SNOTEL_MANUAL_DIR: "manual/snotel"
+SNOTEL_RAW_FILENAME: "snotel-19910101-20260112.txt"
+# Output parquet (stored directly under out_dir/results)
+SNOTEL_DAILY_LONG_PARQUET_NAME: "snotel_daily_long.parquet"
+
+SNOTEL_GRIDMAP_PARQUET_NAME: "snotel_station_to_grid_3310.parquet"
+SNOTEL_DAILY_GRID_PARQUET_NAME: "snotel_daily_grid_CA_3000m_epsg3310_{start}_{end}.parquet"
+SNOTEL_GRID_SHARDS_DIRNAME: "derived/snotel_grid_shards"
+
+SNOTEL_STATION_META_PARQUET_NAME: "snotel_station_metadata.parquet"
+AWDB_META_URL_TEMPLATE: "https://wcc.sc.egov.usda.gov/awdbRestApi/services/v1/stations?stationTriplets={triplets}&elements="
+# triplets will look like: 1234:CA:SNTL
+
+# ERA5 / ERA5-Land
+ERA5_DAILY_DATASET: "derived-era5-land-daily-statistics"
+ERA5_MONTHLY_DATASET: "reanalysis-era5-land-monthly-means"
+
+ERA5_VARIABLES_DAILY:
+  - "2m_temperature"
+  - "snow_depth_water_equivalent"
+  - "volumetric_soil_water_layer_1"
+# Download controls 
+ERA5_MAX_RETRIES: 6
+ERA5_BACKOFF_BASE_S: 25
+
 # PRISM variables
 PRISM_REGION: "us"
 PRISM_RESOLUTION: "4km"
@@ -139,6 +165,56 @@ PRISM_BACKOFF_BASE: 1.7
 
 # GHCND/USCRN processing parameters
 USCRN_YEARS_FILTER: [2024]
+
+
+# SMAP L4 group/vars (confirmed from your file)
+SMAP_L4_SHORT_NAME: "SPL4SMGP"
+SMAP_L4_DIRNAME: "manual/smap/SPL4SMGP"
+SMAP_NETCDF_GROUP: "Geophysical_Data"
+
+SMAP_VAR_SURFACE: "sm_surface"
+SMAP_VAR_ROOTZONE: "sm_rootzone"
+
+# Outputs
+SMAP_DAILY_DIRNAME: "derived/smap_daily"
+SMAP_DAILY_TEMPLATE: "smap_daily_{date}.parquet"   # YYYY-MM-DD
+SMAP_DAILY_AGG: "median"                           # median recommended
+SMAP_LOG_EVERY_N_DAYS: 20
+
+# SMAP -> HydroPulse grid mapping
+SMAP_L4_DIRNAME: "manual/smap/SPL4SMGP"           # already have
+SMAP_NETCDF_GROUP: "Geophysical_Data"             # already have (Cell A)
+SMAP_DAILY_DIRNAME: "derived/smap_daily"          # already have
+
+SMAP_GRIDMAP_FILENAME: "smap_pixel_to_grid_3310.parquet"
+
+SMAP_GRID_DAILY_SHARDS_DIRNAME: "derived/smap_grid_shards"
+SMAP_GRID_FINAL_FILENAME: "smap_daily_grid_CA_3000m_epsg3310_{start}_{end}.parquet"
+
+# Aggregation controls
+SMAP_GRID_AGG: "mean"               # mean is standard
+SMAP_GRID_MIN_PIXELS: 1             # require at least this many SMAP pixels in a grid cell per day
+SMAP_LOG_EVERY_N_DAYS: 20           # reuse your existing pattern
+SMAP_NEAREST_FALLBACK_KM: 6.0       # fallback radius if some pixels miss polygons
+
+
+# USGS Streamflow parameters
+# From: https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=CA&siteType=ST&hasDataTypeCd=dv
+USGS_RAW_DIRNAME: "usgs_raw"
+USGS_CLEAN_DIRNAME: "usgs_clean"
+
+USGS_PARAM_DISCHARGE: "00060"
+USGS_SITE_TYPE: "ST"
+USGS_STATE_CD: "CA"
+USGS_START_DATE: "1991-01-01"
+USGS_END_DATE: "2025-12-31"
+
+USGS_SLEEP_S: 2.5
+USGS_MAX_RETRIES: 6
+USGS_BACKOFF_BASE_S: 10
+USGS_TIMEOUT_S: 180
+
+
 
 
 # HTTP timeouts and retries (seconds unless noted)

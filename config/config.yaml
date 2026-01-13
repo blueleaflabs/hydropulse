@@ -19,7 +19,7 @@ end_date: "2024-10-31"
 
 # Baseline period for anomalies
 BASELINE_START_DATE: "1991-01-01"
-BASELINE_END_DATE: "2020-12-31"
+BASELINE_END_DATE: "2025-12-31"
 
 # Used for aggregations and summaries
 HYDRO_VARIABLES:
@@ -45,6 +45,8 @@ USCRN_BASE_HOURLY: "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/"
 GHCND_STATIONS_URL: "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt"
 CENSUS_STATES_ZIP_URL: "https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_state_20m.zip"
 CDO_BASE_URL: "https://www.ncei.noaa.gov/cdo-web/api/v2/data"
+PRISM_SERVICE_BASE_URL:  "https://services.nacse.org/prism/data/get"
+
 
 # Headers
 USER_AGENT_HEADERS:
@@ -89,6 +91,9 @@ SMAP_CLEAN_DIRNAME: "smap_clean"
 SNOTEL_RAW_DIRNAME: "snotel_raw"
 SNOTEL_CLEAN_DIRNAME: "snotel_clean"
 
+# SMAP Soil Moisture parameters
+SMAP_L4_SHORT_NAME: "SPL4SMGP"
+SMAP_L4_VARIABLES: ["sm_surface", "sm_rootzone"]
 
 
 # GHCND outputs (relative to out_dir)
@@ -112,7 +117,24 @@ GHCND_FILENAME: "ghcnd_daily_cleaned.parquet"
 FINAL_DAILY_FILENAME: "final_daily_grid_3000m_20240601_20241031.parquet"
 FINAL_DAILY_FILENAME_TEMPLATE: "final_daily_grid_{region}_{res_m}m_epsg{epsg}_{start}_{end}.parquet"
 MANUAL_DIRNAME: "manual"
+PRISM_MANUAL_DIR: "results/manual/prism"
 
+# PRISM variables
+PRISM_REGION: "us"
+PRISM_RESOLUTION: "4km"
+PRISM_ELEMENTS: ["ppt", "tmean"]
+
+# “Small chunks” controls
+PRISM_RUN_YEAR_START: 1991
+PRISM_RUN_YEAR_END: 1991
+PRISM_MAX_DOWNLOADS_PER_RUN: 365
+
+# Server politeness
+PRISM_BASE_SLEEP_S: 2.5
+PRISM_JITTER_S: 0.75
+PRISM_TIMEOUT_S: 120
+PRISM_MAX_RETRIES: 6
+PRISM_BACKOFF_BASE: 1.7
 
 
 # GHCND/USCRN processing parameters

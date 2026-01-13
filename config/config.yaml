@@ -238,6 +238,14 @@ MODIS_COMMON_FILL_VALUES: [-3000, -28672, -9999, 32767, 65535]
 MODIS_ACCEPT_VI_QUALITY: []            # keep all quality by default
 
 
+MODIS_CELL_A_SHARDS_DIRNAME_BASELINE: "modis_cellA_shards_baseline"
+MODIS_CELL_A_SHARDS_DIRNAME_ANALYSIS: "modis_cellA_shards_analysis"
+MODIS_GRID_SHARDS_DIRNAME_BASELINE: "modis_grid_shards_baseline"
+MODIS_GRID_SHARDS_DIRNAME_ANALYSIS: "modis_grid_shards_analysis"
+MODIS_GRID_BASELINE_PARQUET_NAME: "modis_vi_grid_baseline_CA_3000m_epsg3310.parquet"
+MODIS_GRID_ANALYSIS_PARQUET_NAME: "modis_vi_grid_analysis_CA_3000m_epsg3310_20240601_20241031.parquet"
+
+
 # --- ERA5 Cell A outputs ---
 ERA5_CELL_A_DAILY_SHARDS_DIRNAME: "era5_cellA_shards_daily"
 ERA5_CELL_A_MONTHLY_SHARDS_DIRNAME: "era5_cellA_shards_monthly"

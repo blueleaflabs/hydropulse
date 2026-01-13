@@ -3,7 +3,8 @@ config.json
 .env
 results/
 data/
-
+TEMP*
+DEL*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

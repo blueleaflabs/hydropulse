@@ -213,7 +213,41 @@ USGS_SLEEP_S: 2.5
 USGS_MAX_RETRIES: 6
 USGS_BACKOFF_BASE_S: 10
 USGS_TIMEOUT_S: 180
+USGS_DV_DAILY_PARQUET_NAME: "usgs_dv_daily_long.parquet"
 
+# MODIS NDVI
+# MODIS / AppEEARS (MOD13Q1)
+MODIS_ANALYSIS_DIR: "manual/modis_ndvi_analysis"
+MODIS_BASELINE_DIR: "manual/modis_ndvi_baseline"
+
+MODIS_PRODUCT: "MOD13Q1"
+MODIS_VERSION: "061"
+MODIS_FEATURE_ID: "aid0002"              # change if your files use a different aid####
+MODIS_SCALE_FACTOR: 0.0001              # NDVI/EVI scale
+MODIS_ACCEPT_VI_QUALITY: [0]            # keep only VI_Quality==0 by default (conservative)
+
+MODIS_SHARDS_DIR: "derived/modis_grid_shards"
+MODIS_OUT_PARQUET_TEMPLATE: "modis_vi_grid_CA_{res_m}m_epsg{epsg}_{tag}.parquet"
+
+MODIS_ENFORCE_QA: false
+# if AppEEARS export includes a SummaryQA layer, this controls which SummaryQA integer codes are accepted when MODIS_ENFORCE_QA: true
+MODIS_ACCEPT_SUMMARY_QA: [0]
+
+# extra “nodata/fill” sentinels to mask when the GeoTIFF’s nodata is missing or unreliable (common in some exports)
+MODIS_COMMON_FILL_VALUES: [-3000, -28672, -9999, 32767, 65535]
+MODIS_ACCEPT_VI_QUALITY: []            # keep all quality by default
+
+
+# --- ERA5 Cell A outputs ---
+ERA5_CELL_A_DAILY_SHARDS_DIRNAME: "era5_cellA_shards_daily"
+ERA5_CELL_A_MONTHLY_SHARDS_DIRNAME: "era5_cellA_shards_monthly"
+
+ERA5_DAILY_LONG_PARQUET_NAME: "era5_daily_long_analysis.parquet"
+ERA5_MONTHLY_LONG_PARQUET_NAME: "era5_monthly_long_baseline.parquet"
+
+# Assembly behavior (daily analysis assembled; monthly baseline shards-only by default)
+ERA5_ASSEMBLE_DAILY_ANALYSIS: true
+ERA5_ASSEMBLE_MONTHLY_BASELINE: false
 
 
 
